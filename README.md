@@ -23,16 +23,21 @@ We want to:
 ## ⚙ **How it works**
 
 - We simulate **3 exchanges**: `ExchangeA`, `ExchangeB`, `ExchangeC`
-- Each exchange sends random:
-  - NEW_ORDER (with price, side, quantity)
-  - CANCEL_ORDER
-  - MODIFY_ORDER
+- Each exchange sends two kinds of data feeds:
+  #### 1. 📦 Order-based feed:
+    - NEW_ORDER (with price, side, quantity)
+    - CANCEL_ORDER
+    - MODIFY_ORDER
+  #### 2. 📊 Top-of-the-book feed:
+    - best bid price & size
+    - best offer price & size
 - Backend merges these orders:
   - Same price across exchanges → sum sizes
 - Builds **top 5 bid/offer levels**, sorted properly
 - Exposes a REST API:
-  `GET /api/orderbook/AAPL`
-
+  ```GET /api/orderbook/{SYMBOL}```
+- Returns the consolidated view to the frontend
+  
 ---
 
 ## 📊 API Example
