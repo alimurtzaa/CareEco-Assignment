@@ -3,7 +3,7 @@ import React from 'react'
 function Header({ last_updated }) {
     return (
         <header className="bg-gradient-to-b from-purple-100 to-purple-100 backdrop-blur-sm text-gray-800 w-full  border-gray-700/50 sticky top-0 z-50">
-            <div className=" container sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl  mx-auto px-6 py-4">
+            <div className=" container sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl  mx-auto px-6 py-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-3">

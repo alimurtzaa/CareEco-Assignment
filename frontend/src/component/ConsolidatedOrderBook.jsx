@@ -29,7 +29,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
 
         <div className="min-h-screen ">
 
-            <div className="container  sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 py-6">
+            <div className="container  sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 py-6">
 
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
 
@@ -76,7 +76,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                         <div className="bg-gray-800/400 backdrop-blur-sm rounded-xl p-4 border border-gray-700/500 text-gray-700">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm ">Best Ask</p>
+                                    <p className="text-sm ">Best Offer</p>
                                     <p className="text-2xl font-bold text-red-400">
                                         {formatPrice(currentBook?.[0]?.offer_price ?? 0)}
                                     </p>
@@ -119,10 +119,10 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
 
                                 <div className="space-y-2">
                                     <div className="grid grid-cols-4 gap-4 text-xs font-semibold text-gray-700 uppercase tracking-wider pb-2 border-b border-gray-700/50">
-                                        <div>Level</div>
-                                        <div>Size</div>
-                                        <div>Price</div>
-                                        <div>Cumulative</div>
+                                        <div >Level</div>
+                                        <div className='text-start'>Size</div>
+                                        <div className='text-start'>Price</div>
+                                        <div className='text-center'>Cumulative</div>
                                     </div>
 
                                     {currentBook.map((level, index) => {
@@ -134,25 +134,26 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                                                     style={{ width: `${(level.bid_size / maxBidSize) * 100}%` }}
                                                 />
                                                 <div className="relative grid grid-cols-4 gap-4 py-3 px-2 hover:bg-gray-200 rounded-lg transition-colors text-gray-700">
-                                                    <div className="flex items-center">
-                                                        <span className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-bold">
+                                                    <div className="flex items-center className='text-center'">
+                                                        <span className="w-6 h-6  bg-green-500 rounded-full flex items-center justify-center text-xs font-bold">
                                                             {level.level}
                                                         </span>
                                                     </div>
-                                                    <div className="font-semibold ">{formatSize(level.bid_size)}</div>
-                                                    <div className="font-mono text-green-400 font-bold">{formatPrice(level.bid_price)}</div>
-                                                    <div className="font-medium ">{formatSize(cumulative)}</div>
+                                                    <div className="font-semibold text-start">{formatSize(level.bid_size)}</div>
+                                                    <div className="font-mono text-green-400 font-bold text-start">{formatPrice(level.bid_price)}</div>
+                                                    <div className="font-medium text-center">{formatSize(cumulative)}</div>
                                                 </div>
                                             </div>
                                         );
                                     })}
+
                                 </div>
                             </div>
 
 
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-6">
-                                    <h4 className="text-lg font-semibold text-red-400">Asks</h4>
+                                    <h4 className="text-lg font-semibold text-red-400">Offer</h4>
                                     <div className="text-sm text-gray-700">
                                         Total: {formatNumber(currentBook.reduce((sum, l) => sum + l.offer_size, 0))} shares
                                     </div>
@@ -161,9 +162,9 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                                 <div className="space-y-2">
                                     <div className="grid grid-cols-4 gap-4 text-xs font-semibold text-gray-700 uppercase tracking-wider pb-2 border-b border-gray-700/50">
                                         <div>Level</div>
-                                        <div>Size</div>
-                                        <div>Price</div>
-                                        <div>Cumulative</div>
+                                        <div className='text-start'>Size</div>
+                                        <div className='text-start'>Price</div>
+                                        <div className='text-center'>Cumulative</div>
                                     </div>
 
                                     {currentBook.map((level, index) => {
@@ -175,18 +176,19 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                                                     style={{ width: `${(level.offer_size / maxOfferSize) * 100}%` }}
                                                 />
                                                 <div className="relative grid grid-cols-4 gap-4 py-3 px-2 hover:bg-gray-200 rounded-lg transition-colors text-gray-700">
-                                                    <div className="flex items-center">
-                                                        <span className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold">
+                                                    <div className="flex items-center text-center">
+                                                        <span className="w-6 h-6 t bg-red-500 text-center rounded-full flex items-center justify-center text-xs font-bold">
                                                             {level.level}
                                                         </span>
                                                     </div>
-                                                    <div className="font-semibold ">{formatSize(level.offer_size)}</div>
-                                                    <div className="font-mono text-red-400 font-bold">{formatPrice(level.offer_price)}</div>
-                                                    <div className="font-medium ">{formatSize(cumulative)}</div>
+                                                    <div className="font-semibold text-start">{formatSize(level.offer_size)}</div>
+                                                    <div className="font-mono text-red-400 font-bold text-start">{formatPrice(level.offer_price)}</div>
+                                                    <div className="font-medium text-center">{formatSize(cumulative)}</div>
                                                 </div>
                                             </div>
                                         );
                                     })}
+
                                 </div>
                             </div>
                         </div>
