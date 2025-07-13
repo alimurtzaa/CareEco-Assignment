@@ -83,5 +83,3 @@ def get_top_levels(symbol: str) -> List[OrderLevel]:
 
     return top_levels
 
-
-import app.simulator
