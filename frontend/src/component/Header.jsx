@@ -11,7 +11,7 @@ function Header({ last_updated }) {
                                 <span className="text-white font-bold">📊</span>
                             </div>
                             <div>
-                                <h1 className="text-xl max-[500px]:text-lg font-bold">Consolidated Order Book</h1>
+                                <h1 className="text-xl max-[500px]:text-lg font-bold">One Big Exchange</h1>
                                 <p className="text-sm max-[500px]:text:xs text-gray-600">Multi-Exchange Market Data</p>
                             </div>
                         </div>
