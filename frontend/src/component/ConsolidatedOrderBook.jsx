@@ -4,17 +4,17 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
 
     const symbols = ['AAPL', 'MSFT', 'TSLA']
 
-    
- 
+
+
 
     const formatPrice = (price) => `$${price.toFixed(2)}`;
     const formatSize = (size) => size.toLocaleString();
     const formatNumber = (num) => num.toLocaleString();
 
     const currentBook = consolidatedBook["order_book"];
-    
-    const maxBidSize =  Math.max(...currentBook.map(l => l.bid_size ?? 0)) ;
-    const maxOfferSize = Math.max(...currentBook.map(l => l.offer_size ?? 0)) ;
+
+    const maxBidSize = Math.max(...currentBook.map(l => l.bid_size ?? 0));
+    const maxOfferSize = Math.max(...currentBook.map(l => l.offer_size ?? 0));
 
 
     // useEffect(() => {
@@ -29,7 +29,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
 
         <div className="min-h-screen ">
 
-            <div className="container lg:max-w-8xl mx-auto px-6 py-6">
+            <div className="container  sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl mx-auto px-6 py-6">
 
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
 
@@ -89,7 +89,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                     </div>
 
                     <div className="bg-gray-800/500 backdrop-blur-sm rounded-xl border border-gray-700/500 overflow-hidden">
-                        
+
                         <div className="bg-gray-900/500 border-b border-gray-700/500 p-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
@@ -109,7 +109,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                         <div className="grid grid-cols-1 xl:grid-cols-2 divide-y xl:divide-y-0 xl:divide-x divide-gray-700/50">
 
                             <div className="p-6 xl:border-r max-xl:border-b border-gray-700/500 ">
-                                
+
                                 <div className="flex items-center justify-between mb-6">
                                     <h4 className="text-lg font-semibold text-green-400">Bids</h4>
                                     <div className="text-sm text-gray-700">
@@ -149,7 +149,7 @@ export function ConsolidatedOrderBook({ selectedSymbol, setSelectedSymbol, conso
                                 </div>
                             </div>
 
-                            
+
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-6">
                                     <h4 className="text-lg font-semibold text-red-400">Asks</h4>

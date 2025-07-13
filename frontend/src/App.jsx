@@ -1,70 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import { ConsolidatedOrderBook, Header } from './component'
-import { getExchangeData } from './services/api'
 
 
 function App() {
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
   const [selectedSymbol, setSelectedSymbol] = useState('AAPL');
-  const [time, setTime] = useState(true);
-  const symbolRef = useRef(selectedSymbol);
 
   const [consolidatedBook, setConsolidatedBook] = useState({
-    last_updated: new Date(),
+    last_updated: new Date().toLocaleString(),
     "symbol": selectedSymbol,
     "order_book": [
-
     ],
-  })
-
-
-  useEffect(() => {
-    symbolRef.current = selectedSymbol;
-  }, [selectedSymbol]);
-
+  });
 
   useEffect(() => {
-    getExchangeData(symbolRef.current).then(data => {
-      setConsolidatedBook(data);
-    });
-  }, []);
 
-
-  const intervalRef = useRef(null); // to store interval ID
-
-  useEffect(() => {
-    // Clear previous interval
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
+    const socket = new WebSocket(BACKEND_URL + selectedSymbol);
+    
+    socket.onopen = () => {
+      console.log("socket connected");
     }
 
-    // Create new AbortController for each symbol change
-    const controller = new AbortController();
+    socket.onmessage = (event) => {
 
-    // Define a polling function that runs every 3 seconds
-    const fetchAndUpdate = async () => {
-      try {
-        const data = await getExchangeData(symbolRef.current, controller.signal);
-        setConsolidatedBook(data);
-      } catch (error) {
-        if (error.name === 'AbortError') {
-          console.log('Previous API call aborted');
-        } else {
-          console.error('API call failed:', error);
-        }
-      }
-    };
+      const data = JSON.parse(event.data);
+      setConsolidatedBook(data);
 
-    // Call immediately
-    fetchAndUpdate();
+    }
 
-    // Set interval to keep polling every 3 seconds
-    intervalRef.current = setInterval(fetchAndUpdate, 3000);
+    socket.onclose = (event) => {
+      console.log("Socket Closed");
+    }
 
-    // Cleanup function
     return () => {
-      clearInterval(intervalRef.current);
-      controller.abort(); // cancel in-flight request
-    };
+      socket.close();
+    }
+
   }, [selectedSymbol]);
 
 
