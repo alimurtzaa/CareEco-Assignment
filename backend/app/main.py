@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from app.api import router
 from fastapi.middleware.cors import CORSMiddleware
 
+import app.simulator
+
 app = FastAPI(title="One Big Exchange")
 
 # allowed all origins for now
