@@ -26,7 +26,7 @@ function App() {
 
       const data = JSON.parse(event.data);
       setConsolidatedBook(data);
-      console.log("Data : " , data)
+      // console.log("Data : " , data)
 
     }
 
