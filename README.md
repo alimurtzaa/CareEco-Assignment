@@ -5,6 +5,7 @@ It merges data from different exchanges and serves the **top 5 levels** through 
 
 ✅ This was built as part of an assignment for **CareEco Technologies**.
 
+![📊 Consolidated Order Book](readmeAsset/frontend.png)
 ---
 
 ## 📌 **Project Goal**
@@ -79,7 +80,7 @@ We want to:
   - Shows last updated timestamp
   - Clean, minimal UI
 - ✅ Frontend deployed on Vercel for quick access and modern hosting
-- ✅ Dockerized backend, deployed to AWS EC2 (Ubuntu)
+- ✅ Dockerized backend, deployed to Render
 
 ## ✏ Author
 - Murtza Ali
