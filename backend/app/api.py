@@ -2,6 +2,8 @@ from fastapi import APIRouter, WebSocket
 from app.order_book import get_top_levels
 from datetime import datetime
 import asyncio
+import pytz
+
 
 router = APIRouter()
 
@@ -18,7 +20,8 @@ async def orderbook_ws(websocket: WebSocket, symbol: str):
         while True:
             top_levels = get_top_levels(symbol)
             data = [level.model_dump() for level in top_levels]
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S") 
+            ist = pytz.timezone('Asia/Kolkata')
+            timestamp = datetime.now(ist).strftime("%Y-%m-%d %H:%M:%S") 
             await websocket.send_json({
                 "symbol": symbol,
                 "last_updated": timestamp,
